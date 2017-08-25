@@ -59,13 +59,14 @@ class CalculationsController < ApplicationController
     #   So if you subtract one time from another, you will get an integer
     #   number of seconds as a result.
     # ================================================================================
+    @time_diff = (@ending-@starting).to_f
 
-    @seconds = "Replace this string with your answer."
-    @minutes = "Replace this string with your answer."
-    @hours = "Replace this string with your answer."
-    @days = "Replace this string with your answer."
-    @weeks = "Replace this string with your answer."
-    @years = "Replace this string with your answer."
+    @seconds = @time_diff
+    @minutes = @time_diff/60
+    @hours = @time_diff/60/60
+    @days = (@time_diff)/60/60/24
+    @weeks = (@time_diff)/60/60/24/7
+    @years = (@time_diff)/60/60/24/7/365
 
     # ================================================================================
     # Your code goes above.
@@ -79,25 +80,28 @@ class CalculationsController < ApplicationController
 
     # ================================================================================
     # Your code goes below.
-    # The numbers the user input are in the array @numbers.
+    # The numbers the user input are in the @numbers @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer."
+    @sorted_numbers = @numbers.sort do |a,b| a <=> b end
 
-    @count = "Replace this string with your answer."
+    @count = @numbers.count
 
-    @minimum = "Replace this string with your answer."
+    @minimum = @numbers.min
 
-    @maximum = "Replace this string with your answer."
+    @maximum = @numbers.max
 
-    @range = "Replace this string with your answer."
+    @range = @numbers.max-@numbers.min
 
-    @median = "Replace this string with your answer."
-
+    @median = 
+      m_pos = @numbers.count / 2
+      @numbers.size % 2 == 1 ? @numbers[m_pos]  : ((@numbers[m_pos-1]+@numbers[m_pos])/2)
+      
+    
     @sum = "Replace this string with your answer."
 
-    @mean = "Replace this string with your answer."
-
+    @mean = @numbers.sum/@numbers.count
+	
     @variance = "Replace this string with your answer."
 
     @standard_deviation = "Replace this string with your answer."
